@@ -1,0 +1,298 @@
+// Лабораторная работа 8, вариант 6 (IoT-мониторинг). Тестовые данные.
+// Файл сгенерирован tools/generate_seed.py — не редактируйте вручную.
+// Запуск: mongosh --file scripts/02_seed.js
+db = db.getSiblingDB('lab8_iot');
+
+// Повторный запуск не должен дублировать данные: сначала очищаем только свои коллекции.
+db.devices.deleteMany({});
+db.readings.deleteMany({});
+db.events.deleteMany({});
+
+db.devices.insertMany([
+  {
+    _id: "dev-001",
+    name: "Холодильная камера 1",
+    type: "env-sensor",
+    location: {
+      site: "Almaty-Lab",
+      room: "A-101"
+    },
+    status: "active",
+    firmware: "1.4.2",
+    thresholds: {
+      temp_max: 8.0
+    },
+    last_reading: {
+      ts: ISODate("2026-11-01T23:00:00Z"),
+      temp_c: 2.8,
+      humidity_pct: 42.4,
+      battery_pct: 88
+    }
+  },
+  {
+    _id: "dev-002",
+    name: "Серверная стойка",
+    type: "env-sensor",
+    location: {
+      site: "Almaty-Lab",
+      room: "B-210"
+    },
+    status: "active",
+    firmware: "1.4.2",
+    thresholds: {
+      temp_max: 30.0
+    },
+    last_reading: {
+      ts: ISODate("2026-11-01T23:00:00Z"),
+      temp_c: 23.5,
+      humidity_pct: 44.4,
+      battery_pct: 86
+    }
+  },
+  {
+    _id: "dev-003",
+    name: "Теплица",
+    type: "env-sensor",
+    location: {
+      site: "Astana-Farm",
+      room: "G-01"
+    },
+    status: "active",
+    firmware: "1.3.9",
+    thresholds: {
+      temp_max: 35.0
+    },
+    last_reading: {
+      ts: ISODate("2026-11-01T23:00:00Z"),
+      temp_c: 17.2,
+      humidity_pct: 46.4,
+      battery_pct: 84
+    }
+  },
+  {
+    _id: "dev-004",
+    name: "Склад 1",
+    type: "env-sensor",
+    location: {
+      site: "Astana-Farm",
+      room: "W-01"
+    },
+    status: "active",
+    firmware: "1.3.9",
+    thresholds: {
+      temp_max: 25.0
+    },
+    last_reading: {
+      ts: ISODate("2026-11-01T23:00:00Z"),
+      temp_c: 12.7,
+      humidity_pct: 48.4,
+      battery_pct: 82
+    }
+  },
+  {
+    _id: "dev-005",
+    name: "Офис, 3 этаж",
+    type: "env-sensor",
+    location: {
+      site: "Almaty-Office",
+      room: "O-305"
+    },
+    status: "active",
+    firmware: "1.4.2",
+    thresholds: {
+      temp_max: 28.0
+    },
+    last_reading: {
+      ts: ISODate("2026-11-01T23:00:00Z"),
+      temp_c: 20.8,
+      humidity_pct: 50.4,
+      battery_pct: 80
+    }
+  },
+  {
+    _id: "dev-006",
+    name: "Серверная резервная",
+    type: "env-sensor",
+    location: {
+      site: "Almaty-Office",
+      room: "S-002"
+    },
+    status: "active",
+    firmware: "1.3.9",
+    thresholds: {
+      temp_max: 32.0
+    },
+    last_reading: {
+      ts: ISODate("2026-11-01T23:00:00Z"),
+      temp_c: 22.9,
+      humidity_pct: 52.4,
+      battery_pct: 78
+    }
+  }
+]);
+
+db.readings.insertMany([
+  { device_id: "dev-001", ts: ISODate("2026-11-01T00:00:00Z"), temp_c: 2.6, humidity_pct: 45.0, battery_pct: 100 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T01:00:00Z"), temp_c: 3.0, humidity_pct: 47.6, battery_pct: 100 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T02:00:00Z"), temp_c: 3.5, humidity_pct: 50.0, battery_pct: 99 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T03:00:00Z"), temp_c: 3.1, humidity_pct: 52.1, battery_pct: 98 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T04:00:00Z"), temp_c: 3.7, humidity_pct: 53.7, battery_pct: 98 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T05:00:00Z"), temp_c: 3.3, humidity_pct: 54.7, battery_pct: 98 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T06:00:00Z"), temp_c: 4.0, humidity_pct: 55.0, battery_pct: 97 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T07:00:00Z"), temp_c: 4.7, humidity_pct: 54.7, battery_pct: 96 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T08:00:00Z"), temp_c: 4.3, humidity_pct: 53.7, battery_pct: 96 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T09:00:00Z"), temp_c: 4.9, humidity_pct: 52.1, battery_pct: 96 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T10:00:00Z"), temp_c: 4.5, humidity_pct: 50.0, battery_pct: 95 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T11:00:00Z"), temp_c: 5.0, humidity_pct: 47.6, battery_pct: 94 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T12:00:00Z"), temp_c: 5.4, humidity_pct: 45.0, battery_pct: 94 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T13:00:00Z"), temp_c: 4.8, humidity_pct: 42.4, battery_pct: 94 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T14:00:00Z"), temp_c: 5.1, humidity_pct: 40.0, battery_pct: 93 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T15:00:00Z"), temp_c: 4.3, humidity_pct: 37.9, battery_pct: 92 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T16:00:00Z"), temp_c: 4.5, humidity_pct: 36.3, battery_pct: 92 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T17:00:00Z"), temp_c: 4.7, humidity_pct: 35.3, battery_pct: 92 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T18:00:00Z"), temp_c: 3.8, humidity_pct: 35.0, battery_pct: 91 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T19:00:00Z"), temp_c: 3.9, humidity_pct: 35.3, battery_pct: 90 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T20:00:00Z"), temp_c: 3.1, humidity_pct: 36.3, battery_pct: 90 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T21:00:00Z"), temp_c: 3.3, humidity_pct: 37.9, battery_pct: 90 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T22:00:00Z"), temp_c: 3.5, humidity_pct: 40.0, battery_pct: 89 },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T23:00:00Z"), temp_c: 2.8, humidity_pct: 42.4, battery_pct: 88 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T00:00:00Z"), temp_c: 23.2, humidity_pct: 47.0, battery_pct: 98 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T01:00:00Z"), temp_c: 22.7, humidity_pct: 49.6, battery_pct: 98 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T02:00:00Z"), temp_c: 23.5, humidity_pct: 52.0, battery_pct: 97 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T03:00:00Z"), temp_c: 24.6, humidity_pct: 54.1, battery_pct: 96 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T04:00:00Z"), temp_c: 24.8, humidity_pct: 55.7, battery_pct: 96 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T05:00:00Z"), temp_c: 26.2, humidity_pct: 56.7, battery_pct: 96 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T06:00:00Z"), temp_c: 26.6, humidity_pct: 57.0, battery_pct: 95 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T07:00:00Z"), temp_c: 28.0, humidity_pct: 56.7, battery_pct: 94 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T08:00:00Z"), temp_c: 29.4, humidity_pct: 55.7, battery_pct: 94 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T09:00:00Z"), temp_c: 29.6, humidity_pct: 54.1, battery_pct: 94 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T10:00:00Z"), temp_c: 30.7, humidity_pct: 52.0, battery_pct: 93 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T11:00:00Z"), temp_c: 30.5, humidity_pct: 49.6, battery_pct: 92 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T12:00:00Z"), temp_c: 31.0, humidity_pct: 47.0, battery_pct: 92 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T13:00:00Z"), temp_c: 31.3, humidity_pct: 44.4, battery_pct: 92 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T14:00:00Z"), temp_c: 30.3, humidity_pct: 42.0, battery_pct: 91 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T15:00:00Z"), temp_c: 30.0, humidity_pct: 39.9, battery_pct: 90 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T16:00:00Z"), temp_c: 28.6, humidity_pct: 38.3, battery_pct: 90 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T17:00:00Z"), temp_c: 28.0, humidity_pct: 37.3, battery_pct: 90 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T18:00:00Z"), temp_c: 27.4, humidity_pct: 37.0, battery_pct: 89 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T19:00:00Z"), temp_c: 25.8, humidity_pct: 37.3, battery_pct: 88 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T20:00:00Z"), temp_c: 25.2, humidity_pct: 38.3, battery_pct: 88 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T21:00:00Z"), temp_c: 23.8, humidity_pct: 39.9, battery_pct: 88 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T22:00:00Z"), temp_c: 23.5, humidity_pct: 42.0, battery_pct: 87 },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T23:00:00Z"), temp_c: 23.5, humidity_pct: 44.4, battery_pct: 86 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T00:00:00Z"), temp_c: 16.8, humidity_pct: 49.0, battery_pct: 96 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T01:00:00Z"), temp_c: 17.4, humidity_pct: 51.6, battery_pct: 96 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T02:00:00Z"), temp_c: 17.3, humidity_pct: 54.0, battery_pct: 95 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T03:00:00Z"), temp_c: 18.5, humidity_pct: 56.1, battery_pct: 94 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T04:00:00Z"), temp_c: 19.9, humidity_pct: 57.7, battery_pct: 94 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T05:00:00Z"), temp_c: 20.5, humidity_pct: 58.7, battery_pct: 94 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T06:00:00Z"), temp_c: 22.2, humidity_pct: 59.0, battery_pct: 93 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T07:00:00Z"), temp_c: 22.9, humidity_pct: 58.7, battery_pct: 92 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T08:00:00Z"), temp_c: 24.5, humidity_pct: 57.7, battery_pct: 92 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T09:00:00Z"), temp_c: 25.9, humidity_pct: 56.1, battery_pct: 92 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T10:00:00Z"), temp_c: 26.1, humidity_pct: 54.0, battery_pct: 91 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T11:00:00Z"), temp_c: 27.0, humidity_pct: 51.6, battery_pct: 90 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T12:00:00Z"), temp_c: 26.6, humidity_pct: 49.0, battery_pct: 90 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T13:00:00Z"), temp_c: 26.8, humidity_pct: 46.4, battery_pct: 90 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T14:00:00Z"), temp_c: 26.7, humidity_pct: 44.0, battery_pct: 89 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T15:00:00Z"), temp_c: 25.3, humidity_pct: 41.9, battery_pct: 88 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T16:00:00Z"), temp_c: 24.7, humidity_pct: 40.3, battery_pct: 88 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T17:00:00Z"), temp_c: 22.9, humidity_pct: 39.3, battery_pct: 88 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T18:00:00Z"), temp_c: 22.0, humidity_pct: 39.0, battery_pct: 87 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T19:00:00Z"), temp_c: 21.1, humidity_pct: 39.3, battery_pct: 86 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T20:00:00Z"), temp_c: 19.3, humidity_pct: 40.3, battery_pct: 86 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T21:00:00Z"), temp_c: 18.7, humidity_pct: 41.9, battery_pct: 86 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T22:00:00Z"), temp_c: 17.3, humidity_pct: 44.0, battery_pct: 85 },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T23:00:00Z"), temp_c: 17.2, humidity_pct: 46.4, battery_pct: 84 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T00:00:00Z"), temp_c: 13.4, humidity_pct: 51.0, battery_pct: 94 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T01:00:00Z"), temp_c: 12.9, humidity_pct: 53.6, battery_pct: 94 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T02:00:00Z"), temp_c: 13.5, humidity_pct: 56.0, battery_pct: 93 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T03:00:00Z"), temp_c: 13.2, humidity_pct: 58.1, battery_pct: 92 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T04:00:00Z"), temp_c: 14.0, humidity_pct: 59.7, battery_pct: 92 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T05:00:00Z"), temp_c: 14.9, humidity_pct: 60.7, battery_pct: 92 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T06:00:00Z"), temp_c: 14.8, humidity_pct: 61.0, battery_pct: 91 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T07:00:00Z"), temp_c: 15.7, humidity_pct: 60.7, battery_pct: 90 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T08:00:00Z"), temp_c: 15.6, humidity_pct: 59.7, battery_pct: 90 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T09:00:00Z"), temp_c: 16.4, humidity_pct: 58.1, battery_pct: 90 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T10:00:00Z"), temp_c: 17.1, humidity_pct: 56.0, battery_pct: 89 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T11:00:00Z"), temp_c: 16.7, humidity_pct: 53.6, battery_pct: 88 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T12:00:00Z"), temp_c: 17.2, humidity_pct: 51.0, battery_pct: 88 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T13:00:00Z"), temp_c: 16.5, humidity_pct: 48.4, battery_pct: 88 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T14:00:00Z"), temp_c: 16.7, humidity_pct: 46.0, battery_pct: 87 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T15:00:00Z"), temp_c: 16.8, humidity_pct: 43.9, battery_pct: 86 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T16:00:00Z"), temp_c: 15.8, humidity_pct: 42.3, battery_pct: 86 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T17:00:00Z"), temp_c: 15.7, humidity_pct: 41.3, battery_pct: 86 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T18:00:00Z"), temp_c: 14.6, humidity_pct: 41.0, battery_pct: 85 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T19:00:00Z"), temp_c: 14.5, humidity_pct: 41.3, battery_pct: 84 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T20:00:00Z"), temp_c: 14.4, humidity_pct: 42.3, battery_pct: 84 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T21:00:00Z"), temp_c: 13.4, humidity_pct: 43.9, battery_pct: 84 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T22:00:00Z"), temp_c: 13.5, humidity_pct: 46.0, battery_pct: 83 },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T23:00:00Z"), temp_c: 12.7, humidity_pct: 48.4, battery_pct: 82 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T00:00:00Z"), temp_c: 20.5, humidity_pct: 53.0, battery_pct: 92 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T01:00:00Z"), temp_c: 21.0, humidity_pct: 55.6, battery_pct: 92 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T02:00:00Z"), temp_c: 20.5, humidity_pct: 58.0, battery_pct: 91 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T03:00:00Z"), temp_c: 21.1, humidity_pct: 60.1, battery_pct: 90 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T04:00:00Z"), temp_c: 20.9, humidity_pct: 61.7, battery_pct: 90 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T05:00:00Z"), temp_c: 21.6, humidity_pct: 62.7, battery_pct: 90 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T06:00:00Z"), temp_c: 22.4, humidity_pct: 63.0, battery_pct: 89 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T07:00:00Z"), temp_c: 22.2, humidity_pct: 62.7, battery_pct: 88 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T08:00:00Z"), temp_c: 22.9, humidity_pct: 61.7, battery_pct: 88 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T09:00:00Z"), temp_c: 22.7, humidity_pct: 60.1, battery_pct: 88 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T10:00:00Z"), temp_c: 23.3, humidity_pct: 58.0, battery_pct: 87 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T11:00:00Z"), temp_c: 23.8, humidity_pct: 55.6, battery_pct: 86 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T12:00:00Z"), temp_c: 23.3, humidity_pct: 53.0, battery_pct: 86 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T13:00:00Z"), temp_c: 23.6, humidity_pct: 50.4, battery_pct: 86 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T14:00:00Z"), temp_c: 22.9, humidity_pct: 48.0, battery_pct: 85 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T15:00:00Z"), temp_c: 23.1, humidity_pct: 45.9, battery_pct: 84 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T16:00:00Z"), temp_c: 23.1, humidity_pct: 44.3, battery_pct: 84 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T17:00:00Z"), temp_c: 22.2, humidity_pct: 43.3, battery_pct: 84 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T18:00:00Z"), temp_c: 22.2, humidity_pct: 43.0, battery_pct: 83 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T19:00:00Z"), temp_c: 21.2, humidity_pct: 43.3, battery_pct: 82 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T20:00:00Z"), temp_c: 21.2, humidity_pct: 44.3, battery_pct: 82 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T21:00:00Z"), temp_c: 21.3, humidity_pct: 45.9, battery_pct: 82 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T22:00:00Z"), temp_c: 20.5, humidity_pct: 48.0, battery_pct: 81 },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T23:00:00Z"), temp_c: 20.8, humidity_pct: 50.4, battery_pct: 80 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T00:00:00Z"), temp_c: 22.6, humidity_pct: 55.0, battery_pct: 90 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T01:00:00Z"), temp_c: 23.1, humidity_pct: 57.6, battery_pct: 90 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T02:00:00Z"), temp_c: 23.8, humidity_pct: 60.0, battery_pct: 89 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T03:00:00Z"), temp_c: 23.7, humidity_pct: 62.1, battery_pct: 88 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T04:00:00Z"), temp_c: 24.7, humidity_pct: 63.7, battery_pct: 88 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T05:00:00Z"), temp_c: 24.8, humidity_pct: 64.7, battery_pct: 88 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T06:00:00Z"), temp_c: 26.0, humidity_pct: 65.0, battery_pct: 87 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T07:00:00Z"), temp_c: 27.2, humidity_pct: 64.7, battery_pct: 86 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T08:00:00Z"), temp_c: 27.3, humidity_pct: 63.7, battery_pct: 86 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T09:00:00Z"), temp_c: 28.3, humidity_pct: 62.1, battery_pct: 86 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T10:00:00Z"), temp_c: 28.2, humidity_pct: 60.0, battery_pct: 85 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T11:00:00Z"), temp_c: 28.9, humidity_pct: 57.6, battery_pct: 84 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T12:00:00Z"), temp_c: 29.4, humidity_pct: 55.0, battery_pct: 84 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T13:00:00Z"), temp_c: 28.7, humidity_pct: 52.4, battery_pct: 84 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T14:00:00Z"), temp_c: 28.8, humidity_pct: 50.0, battery_pct: 83 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T15:00:00Z"), temp_c: 27.7, humidity_pct: 47.9, battery_pct: 82 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T16:00:00Z"), temp_c: 27.5, humidity_pct: 46.3, battery_pct: 82 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T17:00:00Z"), temp_c: 27.2, humidity_pct: 45.3, battery_pct: 82 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T18:00:00Z"), temp_c: 25.8, humidity_pct: 45.0, battery_pct: 81 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T19:00:00Z"), temp_c: 25.4, humidity_pct: 45.3, battery_pct: 80 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T20:00:00Z"), temp_c: 24.1, humidity_pct: 46.3, battery_pct: 80 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T21:00:00Z"), temp_c: 23.9, humidity_pct: 47.9, battery_pct: 80 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T22:00:00Z"), temp_c: 23.8, humidity_pct: 50.0, battery_pct: 79 },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T23:00:00Z"), temp_c: 22.9, humidity_pct: 52.4, battery_pct: 78 }
+]);
+
+db.events.insertMany([
+  { device_id: "dev-001", ts: ISODate("2026-11-01T01:05:00Z"), type: "info", severity: "info", message: "Плановая калибровка выполнена", acknowledged: true },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T02:10:00Z"), type: "info", severity: "info", message: "Устройство перезапущено", acknowledged: true },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T03:30:00Z"), type: "info", severity: "info", message: "Обновление прошивки проверено", acknowledged: true },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T05:45:00Z"), type: "info", severity: "info", message: "Смена режима передачи", acknowledged: false },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T11:00:00Z"), type: "high_temp", severity: "warning", message: "Температура выше порога", acknowledged: false },
+  { device_id: "dev-002", ts: ISODate("2026-11-01T12:00:00Z"), type: "high_temp", severity: "critical", message: "Температура значительно выше порога", acknowledged: false },
+  { device_id: "dev-006", ts: ISODate("2026-11-01T13:15:00Z"), type: "high_temp", severity: "warning", message: "Температура близка к порогу", acknowledged: true },
+  { device_id: "dev-005", ts: ISODate("2026-11-01T15:20:00Z"), type: "low_battery", severity: "warning", message: "Заряд батареи ниже 90%", acknowledged: false },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T17:40:00Z"), type: "offline", severity: "critical", message: "Нет данных более 30 минут", acknowledged: false },
+  { device_id: "dev-004", ts: ISODate("2026-11-01T18:05:00Z"), type: "online", severity: "info", message: "Связь восстановлена", acknowledged: true },
+  { device_id: "dev-003", ts: ISODate("2026-11-01T20:00:00Z"), type: "high_temp", severity: "warning", message: "Температура выше нормы", acknowledged: true },
+  { device_id: "dev-001", ts: ISODate("2026-11-01T22:30:00Z"), type: "info", severity: "info", message: "Дверь камеры закрыта", acknowledged: false }
+]);
+
+print('devices: ' + db.devices.countDocuments());
+print('readings: ' + db.readings.countDocuments());
+print('events: ' + db.events.countDocuments());
